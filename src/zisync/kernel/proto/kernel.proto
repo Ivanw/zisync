@@ -1,0 +1,1152 @@
+package zs;
+
+enum MsgErrorCode {
+    ZE_GENERAL              = 1;
+    ZE_ADDRINUSE            = 2;
+    ZE_TREE_NOENT           = 3;
+    ZE_SYNCDIR_MISMATCH     = 4;
+
+    ZE_FILE_NOENT           = 5;
+    ZE_NESTED_TREE          = 6; //Add nested tree with the same sync_uuid
+    ZE_BAD_MSG              = 7;
+    ZE_VERSION_INCOMPATIBLE = 8;
+    ZE_FILESYSTEM           = 9;
+    ZE_NOT_DIR              = 10;
+    ZE_TREE_EXIST           = 11;
+    ZE_PERMISSION_DENY      = 12;
+    //ZE_BAD_MSGCODE      = 2;
+    //ZE_BAD_DEVICE       = 3;
+    //ZE_BAD_FORMAT       = 4;
+    //ZE_BAD_TREE         = 5;
+    //ZE_VCLOCK_MISMATCH  = 6;
+    //ZE_BAD_SYNCDIR      = 7;
+    //ZE_SQLITE           = 8;
+
+    //ZE_EXIST            = 9;  //add an existing 
+    //ZE_NOENT            = 10; //remove an nonexistent
+    //ZE_BAD_UUID         = 11; 
+    //ZE_PEER_ERROR       = 12;
+    //ZE_SYNCDIR_MISMATCH = 13;
+    //ZE_BAD_PATH         = 14;
+    //ZE_BAD_PART         = 15;
+    //ZE_SYNC_WITH_SELF   = 17;
+    //ZE_SYNC_NOEMPTY     = 18;
+    //ZE_OPERATE_TIMEOUT  = 19;
+    //ZE_PERMISSION_DENY  = 20;
+    //ZE_UNTRUSTED        = 21;
+    //ZE_MSG_TAMPERING    = 22; 
+}
+
+enum MsgCode {
+    MC_ERROR    = 0;
+
+    //=============================
+    // Daemon to Daemon
+    //=============================
+    MC_FIND_REQUEST               = 100;
+    MC_FIND_RESPONSE              = 101;
+    MC_DEVICE_INFO_REQUEST        = 102;
+    MC_DEVICE_INFO_RESPONSE       = 103;
+    MC_PUSH_DEVICE_INFO_REQUEST   = 104;
+    MC_PUSH_DEVICE_INFO_RESPONSE  = 105;
+
+    MC_ANNOUNCE_TOKEN_CHANGED_REQUEST  = 110;
+    MC_ANNOUNCE_TOKEN_CHANGED_RESPONSE = 111;
+    MC_ANNOUNCE_EXIT_REQUEST      = 112;
+    MC_ANNOUNCE_EXIT_RESPONSE     = 113;
+
+    MC_FILTER_PUSH_SYNC_META_REQUEST  = 114;
+    MC_FILTER_PUSH_SYNC_META_RESPONSE = 115;
+
+    MC_DEVICE_META_REQUEST        = 116;
+    MC_DEVICE_META_RESPONSE       = 117;
+    MC_SHARE_SYNC_REQUEST         = 118;
+    MC_SHARE_SYNC_RESPONSE        = 119;
+
+    MC_FIND_FILE_REQUEST          = 120;
+    MC_FIND_FILE_RESPONSE         = 121;
+
+    MC_PUSH_BACKUP_INFO_REQUEST     = 122;
+    MC_PUSH_BACKUP_INFO_RESPONSE    = 123;
+
+    MC_REMOVE_REMOTE_FILE_REQUEST   = 124;
+    MC_REMOVE_REMOTE_FILE_RESPONSE  = 125;
+    // ==================================
+    // for inproc in Kernel
+    // ==================================
+    MC_REFRESH_REQUEST                  = 300;
+    MC_REFRESH_RESPONSE                 = 301;
+    MC_SYNC_REQUEST                     = 302;
+    MC_SYNC_RESPONSE                    = 303;
+
+    MC_SET_ROUTE_PORT_REQUEST           = 310;
+    MC_SET_ROUTE_PORT_RESPONSE          = 311;
+    MC_SET_DISCOVER_PORT_REQUEST        = 316;
+    MC_SET_DISCOVER_PORT_RESPONSE       = 317;
+    MC_DISCOVER_PEER_ERASE_REQUEST     = 318;
+    MC_DISCOVER_PEER_ERASE_RESPONSE    = 319;
+
+    MC_MONITOR_WATCH_ADD_REQUEST        = 322;
+    MC_MONITOR_WATCH_ADD_RESPONSE       = 323;
+    MC_MONITOR_WATCH_DEL_REQUEST        = 324;
+    MC_MONITOR_WATCH_DEL_RESPONSE       = 325;
+    MC_MONITOR_REPORT_EVENT_REQUEST     = 326;
+    MC_MONITOR_REPORT_EVENT_RESPONSE    = 327;
+
+    MC_DHT_ANNOUNCE_REQUEST             = 342;
+    MC_DHT_ANNOUNCE_RESPONSE            = 343;
+    MC_BROADCAST_REQUEST				= 344;
+    MC_BROADCAST_RESPONSE				= 345;
+    MC_CHECK_PEER_EXPIRED_REQUEST		= 346;
+    MC_CHECK_PEER_EXPIRED_RESPONSE		= 347;
+
+    // when device online and periodic
+    MC_ISSUE_TOKEN_CHANGED_REQUEST      = 352;
+    MC_ISSUE_TOKEN_CHANGED_RESPONSE     = 353;
+    MC_ISSUE_DEVICE_INFO_REQUEST        = 354;
+    MC_ISSUE_DEVICE_INFO_RESPONSE       = 355;
+    MC_ISSUE_PUSH_DEVICE_INFO_REQUEST   = 356;
+    MC_ISSUE_PUSH_DEVICE_INFO_RESPONSE  = 357;
+
+    // when change
+    MC_ISSUE_PUSH_DEVICE_META_REQUEST   = 358;
+    MC_ISSUE_PUSH_DEVICE_META_RESPONSE  = 359;
+    MC_ISSUE_PUSH_SYNC_INFO_REQUEST     = 360;
+    MC_ISSUE_PUSH_SYNC_INFO_RESPONSE    = 361;
+    MC_ISSUE_PUSH_TREE_INFO_REQUEST     = 362;
+    MC_ISSUE_PUSH_TREE_INFO_RESPONSE    = 363;
+	MC_REPORT_DATA_REQUEST 				= 364;
+	MC_REPORT_DATA_RESPONSE				= 365;
+	MC_REPORT_UI_MONITOR_REQUEST		= 366;
+	MC_REPORT_UI_MONITOR_RESPONSE		= 367;
+
+    MC_ROUTE_STARTUP_REQUEST            = 368;
+    MC_ROUTE_STARTUP_RESPONSE           = 369;
+    MC_ROUTE_SHUTDOWN_REQUEST           = 370;
+    MC_ROUTE_SHUTDOWN_RESPONSE          = 371;
+    MC_DISCOVER_SET_BACKGROUND_REQUEST  = 372;
+    MC_DISCOVER_SET_BACKGROUND_RESPONSE = 373;
+    MC_DISCOVER_SET_FOREGROUND_REQUEST  = 374;
+    MC_DISCOVER_SET_FOREGROUND_RESPONSE = 375;
+
+    MC_QUERY_CACHE_UPDATE_REQUEST       = 376;
+    MC_QUERY_CACHE_UPDATE_RESPONSE      = 377;
+    MC_UPDATE_ALL_TREE_PAIR_STATUS_REQUEST  = 378;
+    MC_UPDATE_ALL_TREE_PAIR_STATUS_RESPONSE = 379;
+
+    // For Test
+    MC_DEVICE_ADD_REQUEST                   = 400;
+    MC_DEVICE_ADD_RESPONSE                  = 401;
+    MC_REMOTE_DEVICE_SHOW_REQUEST           = 402;
+    MC_REMOTE_DEVICE_SHOW_RESPONSE          = 403;
+    MC_DATABASE_INIT_REQUEST                = 404;
+    MC_DATABASE_INIT_RESPONSE               = 405;
+    MC_MONITOR_ENABLE_REQUEST               = 406;
+    MC_MONITOR_ENABLE_RESPONSE              = 407;
+    MC_MONITOR_DISABLE_REQUEST              = 408;
+    MC_MONITOR_DISABLE_RESPONSE             = 409;
+
+    MC_SYNC_ADD_REQUEST                     = 410;
+    MC_SYNC_ADD_RESPONSE                    = 411;
+    MC_SYNC_DEL_REQUEST                     = 412;
+    MC_SYNC_DEL_RESPONSE                    = 413;
+    MC_SYNC_QUERY_REQUEST                   = 414;
+    MC_SYNC_QUERY_RESPONSE                  = 415;
+
+    MC_TREE_ADD_REQUEST                     = 416;
+    MC_TREE_ADD_RESPONSE                    = 417;
+    MC_TREE_DEL_REQUEST                     = 418;
+    MC_TREE_DEL_RESPONSE                    = 419;
+    MC_REMOTE_TREE_ADD_REQUEST              = 420;
+    MC_REMOTE_TREE_ADD_RESPONSE             = 421;
+    MC_TREE_SHOW_REQUEST                    = 422;
+    MC_TREE_SHOW_RESPONSE                   = 423;
+    MC_ADD_FAVORITE_REQUEST                 = 424;
+    MC_ADD_FAVORITE_RESPONSE                = 425;
+    MC_TEST_FIND_REQUEST                    = 426;
+    MC_TEST_FIND_RESPONSE                   = 427;
+    MC_LIST_SYNC_REQUEST                    = 428;
+    MC_LIST_SYNC_RESPONSE                   = 429;
+
+    MC_DHT_ANNOUNCE_ENABLE_REQUEST          = 430;
+    MC_DHT_ANNOUNCE_ENABLE_RESPONSE         = 431;
+    MC_DHT_ANNOUNCE_DISABLE_REQUEST         = 432;
+    MC_DHT_ANNOUNCE_DISABLE_RESPONSE        = 433;
+    MC_BROADCAST_ENABLE_REQUEST             = 434;
+    MC_BROADCAST_ENABLE_RESPONSE            = 435;
+    MC_BROADCAST_DISABLE_REQUEST            = 436;
+    MC_BROADCAST_DISABLE_RESPONSE           = 437;
+    MC_AUTO_SYNC_ENABLE_REQUEST             = 438;
+    MC_AUTO_SYNC_ENABLE_RESPONSE            = 439;
+    MC_AUTO_SYNC_DISABLE_REQUEST            = 440;
+    MC_AUTO_SYNC_DISABLE_RESPONSE           = 441;
+    MC_SET_ACCOUNT_REQUEST                  = 442;
+    MC_SET_ACCOUNT_RESPONSE                 = 443;
+    MC_SYNC_SHOW_REQUEST                    = 444;
+    MC_SYNC_SHOW_RESPONSE                   = 445;
+    MC_DISCOVER_CACHE_CLEAR_REQUEST         = 446;
+    MC_DISCOVER_CACHE_CLEAR_RESPONSE        = 447;
+    MC_DEVICE_INFO_ENABLE_REQUEST           = 448;
+    MC_DEVICE_INFO_ENABLE_RESPONSE          = 449;
+    MC_DEVICE_INFO_DISABLE_REQUEST          = 450;
+    MC_DEVICE_INFO_DISABLE_RESPONSE         = 451;
+    MC_PUSH_DEVICE_INFO_ENABLE_REQUEST      = 452;
+    MC_PUSH_DEVICE_INFO_ENABLE_RESPONSE     = 453;
+    MC_PUSH_DEVICE_INFO_DISABLE_REQUEST     = 454;
+    MC_PUSH_DEVICE_INFO_DISABLE_RESPONSE    = 455;
+    MC_STARTUP_DISCOVER_DEVICE_REQUEST      = 456;
+    MC_STARTUP_DISCOVER_DEVICE_RESPONSE     = 457;
+    MC_SHUTDOWN_DISCOVER_DEVICE_REQUEST     = 458;
+    MC_SHUTDOWN_DISCOVER_DEVICE_RESPONSE    = 459;
+    MC_GET_DISCOVERED_DEVICE_REQUEST        = 460;
+    MC_GET_DISCOVERED_DEVICE_RESPONSE       = 461;
+    MC_TEST_SHARE_SYNC_REQUEST              = 462;
+    MC_TEST_SHARE_SYNC_RESPONSE             = 463;
+    MC_STARTUP_DOWNLOAD_REQUEST             = 464;
+    MC_STARTUP_DOWNLOAD_RESPONSE            = 465;
+    MC_SHUTDOWN_DOWNLOAD_REQUEST            = 466;
+    MC_SHUTDOWN_DOWNLOAD_RESPONSE           = 467;
+
+    MC_BACKUP_ADD_REQUEST                   = 468;
+    MC_BACKUP_ADD_RESPONSE                  = 469;
+    MC_BACKUP_DEL_REQUEST                   = 470;
+    MC_BACKUP_DEL_RESPONSE                  = 471;
+    MC_BACKUP_SHOW_REQUEST                  = 472;
+    MC_BACKUP_SHOW_RESPONSE                 = 473;
+    MC_ADD_BACKUP_TARGET_DEVICE_REQUEST     = 474;
+    MC_ADD_BACKUP_TARGET_DEVICE_RESPONSE    = 475;
+    MC_DEL_BACKUP_TARGET_DEVICE_REQUEST     = 476;
+    MC_DEL_BACKUP_TARGET_DEVICE_RESPONSE    = 477;
+    MC_SET_BACKUP_ROOT_REQUEST              = 478;
+    MC_SET_BACKUP_ROOT_RESPONSE             = 479;
+    MC_SET_TEST_PLATFORM_REQUEST            = 480;
+    MC_SET_TEST_PLATFORM_RESPONSE           = 481;
+    MC_CLEAR_TEST_PLATFORM_REQUEST          = 482;
+    MC_CLEAR_TEST_PLATFORM_RESPONSE         = 483;
+    MC_SET_SYNC_MODE_REQUEST                = 484;
+    MC_SET_SYNC_MODE_RESPONSE               = 485;
+    MC_GET_SYNC_MODE_REQUEST                = 486;
+    MC_GET_SYNC_MODE_RESPONSE               = 487;
+    MC_QUERY_TREE_PAIR_STATUS_REQUEST       = 488;
+    MC_QUERY_TREE_PAIR_STATUS_RESPONSE      = 489;
+    MC_SET_TREE_ROOT_REQUEST                = 490;
+    MC_SET_TREE_ROOT_RESPONSE               = 491;
+    MC_DEL_BACKUP_TARGET_REQUEST            = 492;
+    MC_DEL_BACKUP_TARGET_RESPONSE           = 493;
+    
+    MC_SET_SHARE_SYNC_PERM_REQUEST          = 494;
+    MC_SET_SHARE_SYNC_PERM_RESPONSE         = 495;
+    MC_GET_SHARE_SYNC_PERM_REQUEST          = 496;
+    MC_GET_SHARE_SYNC_PERM_RESPONSE         = 497;
+    
+    MC_ANNOUNCE_TOKEN_CHANGED_ENABLE_REQUEST   = 498;
+    MC_ANNOUNCE_TOKEN_CHANGED_ENABLE_RESPONSE  = 499;
+    MC_ANNOUNCE_TOKEN_CHANGED_DISABLE_REQUEST  = 500;
+    MC_ANNOUNCE_TOKEN_CHANGED_DISABLE_RESPONSE = 501;
+
+    MC_SET_DOWNLOAD_CACHE_VOLUME_REQUEST    = 502;
+    MC_SET_DOWNLOAD_CACHE_VOLUME_RESPONSE   = 503;
+    MC_QUERY_DOWNLOAD_STATUS_REQUEST        = 504;
+    MC_QUERY_DOWNLOAD_STATUS_RESPONSE       = 505;
+    MC_STARTUP_UPLOAD_REQUEST               = 506;
+    MC_STARTUP_UPLOAD_RESPONSE              = 507;
+    MC_SHUTDOWN_UPLOAD_REQUEST              = 508;
+    MC_SHUTDOWN_UPLOAD_RESPONSE             = 509;
+    MC_QUERY_UPLOAD_STATUS_REQUEST          = 510;
+    MC_QUERY_UPLOAD_STATUS_RESPONSE         = 511;
+    MC_GET_DOWNLOAD_CACHE_AMOUNT_REQUEST    = 512;
+    MC_GET_DOWNLOAD_CACHE_AMOUNT_RESPONSE   = 513;
+    MC_GET_DOWNLOAD_CACHE_ROOT_REQUEST      = 514;
+    MC_GET_DOWNLOAD_CACHE_ROOT_RESPONSE     = 515;
+    MC_CLEAN_UP_DOWNLOAD_CACHE_REQUEST      = 516;
+    MC_CLEAN_UP_DOWNLOAD_CACHE_RESPONSE     = 517;
+	MC_QUERY_HISTORY_INFO_REQUEST			= 518;
+	MC_QUERY_HISTORY_INFO_RESPONSE			= 519;
+	MC_PERMISSION_VERIFY_REQUEST			= 520;
+	MC_PERMISSION_VERIFY_RESPONSE			= 521;
+	MC_QUERY_PERMISSIONS_REQUEST			= 522;
+	MC_QUERY_PERMISSIONS_RESPONSE			= 523;
+	MC_SET_MAC_ADDRESS_IN_DB_REQUEST		= 524;
+	MC_SET_MAC_ADDRESS_IN_DB_RESPONSE		= 525;
+	MC_SET_EXPIRED_TIME_IN_DB_REQUEST		= 526;
+	MC_SET_EXPIRED_TIME_IN_DB_RESPONSE		= 527;
+	MC_CLEAR_PERMISSIONS_REQUEST			= 528;
+	MC_CLEAR_PERMISSIONS_RESPONSE			= 529;
+	MC_QUERY_VERIFY_STATUS_REQUEST			= 530;
+	MC_QUERY_VERIFY_STATUS_RESPONSE			= 531;
+	MC_QUERY_VERIFY_IDENTIFY_INFO_REQUEST	= 532;
+	MC_QUERY_VERIFY_IDENTIFY_INFO_RESPONSE	= 533;
+	MC_SYNC_CONTROLER_REQUEST				= 534;
+	MC_SYNC_CONTROLER_RESPONSE				= 535;
+    MC_VERIFY_BIND_REQUEST                  = 536;
+    MC_VERIFY_BIND_RESPONSE                 = 537;
+    MC_VERIFY_UNBIND_REQUEST                = 538;
+    MC_VERIFY_UNBIND_RESPONSE               = 549;
+  MC_SET_SYNC_PERM_REQUEST          = 550;
+  MC_SET_SYNC_PERM_RESPONSE         = 551;
+  MC_ADD_STATIC_PEERS_REQUEST        = 552;
+  MC_ADD_STATIC_PEERS_RESPONSE       = 553;
+  MC_GET_ACTIVE_IP_REQUEST         = 554;
+  MC_GET_ACTIVE_IP_RESPONSE        = 555;
+  MC_DELETE_WATCH_REQUEST          = 556;
+  MC_DELETE_WATCH_RESPONSE         = 557;
+  MC_HANDLE_ROOT_REMOVE_REQUEST    = 558;
+  MC_HANDLE_ROOT_REMOVE_RESPONSE   = 559;
+  MC_REFRESH_ENABLE_REQUEST        = 560;
+  MC_REFRESH_ENABLE_RESPONSE       = 561;
+  MC_REFRESH_DISABLE_REQUEST       = 562;
+  MC_REFRESH_DISABLE_RESPONSE      = 563;
+}
+
+enum MsgEncryptLevel {
+    EL_NONE                 = 0;
+    EL_ENCRYPT              = 1;
+    EL_ENCRYPT_WITH_ACCOUNT = 2;
+}
+
+message MsgHead {
+    required int32          version = 1;  // must by 1 for this version
+    required MsgCode        code    = 2;
+    required MsgEncryptLevel level   = 3;
+    required string         uuid    = 4;  // the device_uuid.
+}
+
+message MsgError {
+    required MsgErrorCode  errcode  = 1;
+}
+
+message MsgRefreshRequest {
+    required int32 tree_id = 1;
+}
+
+message MsgRefreshResponse {
+    required int32 tree_id = 1;
+}
+
+enum MsgSyncType {
+    ST_NORMAL    = 0;
+    ST_BACKUP    = 1;
+    ST_SHARED    = 2;
+}
+
+message MsgSyncRequest {
+    required int32 local_tree_id   = 1;
+    required int32 remote_tree_id  = 2;
+    required bool  is_manual       = 3;
+}
+
+message MsgSyncResponse {
+    required int32 local_tree_id  = 1;
+    required int32 remote_tree_id = 2;
+}
+
+message MsgPushSyncMeta {
+    required string local_tree_uuid      = 1;
+    required string remote_tree_uuid     = 2; // the uuid who initiate the push sync
+    required MsgRemoteMeta remote_meta   = 3;
+}
+
+message MsgFilterPushSyncMetaRequest {
+    required string local_tree_uuid      = 1; // the same with PushSyncMeta
+    repeated MsgStat stats   = 2;
+}
+
+message MsgFilterPushSyncMetaResponse {
+    repeated MsgStat stats   = 1;
+}
+
+message MsgSyncAddRequest {
+    required string sync_name     = 1;
+    optional string sync_uuid     = 2;
+}
+
+message MsgTreeInfo {
+    required int32  id            = 1;
+    required string uuid          = 2;
+    required string root          = 3;
+    optional string device_uuid   = 4;
+    required bool   is_local      = 5;
+}
+
+message MsgSyncInfo {
+    required int32  id         = 1;
+    required string uuid       = 2;
+    required string name       = 3;
+    required int64  last_sync  = 4;
+    required MsgSyncType type  = 5;
+    repeated MsgTreeInfo trees = 6; 
+    required MsgSyncPerm perm  = 7; 
+}
+
+message MsgSyncAddResponse {
+    required MsgSyncInfo sync       = 1;
+}
+
+message MsgSyncQueryRequest {
+    required MsgSyncType sync_type     = 1;
+    optional int32 sync_id          = 2;
+}
+
+message MsgSyncQueryResponse {
+    repeated MsgSyncInfo syncs       = 1;
+}
+
+message MsgSyncDelRequest {
+    required int32 sync_id      = 1;
+}
+
+message MsgSetRoutePortRequest {
+    required int32 new_port  = 1;
+}
+
+message MsgSetDiscoverPortRequest {
+    required int32 new_port  = 1;
+}
+
+message MsgDiscoverPeerEraseRequest {
+    required string info_hash_hex = 1;
+    required bool   erase_all     = 2;  // true means erase all peers
+    repeated MsgUri peers         = 3;
+}
+
+message MsgSyncBlob {
+    required string sync_uuid = 1;
+    required string sync_name = 2;
+}
+
+message MsgTreeAddRequest {
+    required int32  sync_id   = 1;
+    required string tree_root = 2;
+    optional string tree_uuid = 3;
+}
+message MsgTreeAddResponse {
+    required MsgTreeInfo  tree   = 1;
+}
+
+message MsgTreeDelRequest {
+    required int32  tree_id  = 1;
+}
+
+enum MsgFileType {
+    FT_REG  = 0;
+    FT_DIR  = 1;
+}
+
+enum MsgFileStatus {
+    FS_NORMAL = 0;
+    FS_REMOVE = 1;
+}
+
+message MsgStat {
+    required string     path            = 1;
+    required MsgFileType   type         = 2;
+    required MsgFileStatus status       = 3;
+    required int64      mtime           = 4;
+    required int64      length          = 5;
+    required int64      usn             = 6;
+    required string     sha1            = 7;
+    required int32      win_attr        = 8;
+    required int32      unix_attr       = 9;
+    required int32      android_attr    = 10;
+    repeated int32      vclock          = 11;
+    required string     modifier        = 12;
+    required int64      time_stamp      = 13;
+}
+
+message MsgFindRequest {
+    required string sync_uuid = 1;
+    optional string local_tree_uuid = 2;
+    required string remote_tree_uuid = 3; // the finded tree
+    required int64  since = 4 [default = 0];
+    required int32  limit = 5;
+    optional string device_uuid = 6;
+    optional bool   is_list_sync = 7; // should be requried, but to compatible with old version
+}
+
+message MsgRemoteMeta {
+    repeated string uuids    = 1;
+    repeated MsgStat stats   = 2;
+}
+
+message MsgFindResponse {
+    required MsgRemoteMeta remote_meta = 1;
+}
+
+message MsgRemoveRemoteFileRequest {
+    required string sync_uuid = 1;
+    required string relative_path = 2;
+}
+
+enum MsgRemoveRemoteFileError {
+    E_NOENT     = 1;
+    E_RM_FAIL   = 2;
+    E_NONE      = 3;
+}
+
+message MsgRemoveRemoteFileResponse {
+    required MsgRemoveRemoteFileError error = 1;
+    required string device_uuid = 2;
+    required string sync_uuid  = 3;
+    required string success_tree_uuid = 4;
+    repeated string fail_tree_uuids = 5;
+    required string relative_path = 6;
+}
+
+message MsgMonitorWatchAddRequest {
+    required string path = 1;
+}
+
+message MsgMonitorWatchDelRequest {
+    required string path = 1;
+}
+
+enum MsgReportEventType {
+    ET_CREATE    = 1;
+    ET_MODIFY    = 2;
+    ET_DELETE    = 3;
+    ET_ATTRIB    = 4;
+    ET_MOVE_FROM = 5;
+    ET_MOVE_TO   = 6;
+}
+
+message MsgReportEvent {
+    required string             path  = 1;
+    optional string             alias = 2;
+    required MsgReportEventType type  = 3;
+    required int64              file_move_cookie = 4;
+    //required PbBool      is_dir = 3;
+    //optional string      dst_path = 4; // only used for IT_MOVE
+}
+
+message MsgMonitorReportEventRequest {
+    required string tree_root = 1;
+    repeated MsgReportEvent events = 2;
+}
+
+message MsgAnnounceTokenChangedRequest {
+    required string device_uuid = 1;
+    required string new_token   = 2;
+}
+
+message MsgAnnounceExitRequest {
+    required string device_uuid = 1;
+}
+
+enum MsgDeviceType {
+    DT_LINUX   = 1;
+    DT_ANDROID = 2;
+    DT_WINDOWS = 3;
+    DT_MAC     = 4;
+    DT_IOS     = 5;
+}
+
+message MsgDevice {
+    required string        uuid        = 1;
+    required string        name        = 2;
+    required int32         data_port   = 3;
+    required int32         route_port  = 4;
+    required MsgDeviceType type        = 5;
+    repeated MsgSync       syncs       = 6;
+    optional string        backup_root = 7;
+    optional int32         version     = 8;
+}
+
+message MsgTree {
+    required string uuid        = 1;
+    required string root        = 2;
+    required bool   is_normal   = 3;
+}
+
+enum MsgSyncPerm {
+    SP_RDONLY         = 1;
+    SP_WRONLY         = 2;
+    SP_RDWR           = 3;
+    SP_DISCONNECT     = 4;
+    SP_CREATOR_DELETE = 5;
+}
+
+enum MsgSyncMode {
+    SM_AUTO   = 0;
+    SM_TIMER  = 1;
+    SM_MANUAL = 2;
+}
+
+message MsgBackupSyncMode {
+    required string      uuid        = 1;
+    required MsgSyncMode mode        = 2;
+    optional int32       sync_time   = 3;
+}
+
+message MsgSync {
+    required string            uuid      = 1;
+    required string            name      = 2;
+    required MsgSyncType       type      = 3;
+    repeated MsgTree           trees     = 4;
+    required bool              is_normal = 5;
+    repeated MsgBackupSyncMode sync_mode = 6;
+    optional MsgSyncPerm       perm      = 7;
+    optional MsgDevice         creator   = 8;
+}
+
+message MsgDeviceInfoRequest {
+    optional string sync_uuid = 1;
+    optional string device_uuid = 2;
+}
+
+message MsgDeviceInfoResponse {
+    required MsgDevice device = 1;
+}
+
+message MsgPushDeviceInfoRequest {
+    required MsgDevice device = 1;
+}
+
+message MsgIssueTokenChangedRequest {
+    required string origin_token = 1;
+}
+
+message MsgIssuePushDeviceMetaRequest {
+    optional int32 device_id = 1;
+}
+
+message MsgUri {
+    required string host     = 1;
+    required int32  port     = 2;
+    required bool   is_ipv6  = 3;
+}
+
+message MsgIssueDeviceInfoRequest {
+    optional MsgUri uri       = 1;
+    optional string sync_uuid = 2;
+}
+
+message MsgIssuePushDeviceInfoRequest {
+    optional int32 device_id = 1;
+}
+
+message MsgIssuePushSyncInfoRequest {
+    required int32 sync_id = 1;
+    optional int32 device_id = 2;
+}
+
+message MsgIssuePushTreeInfoRequest {
+    required int32 tree_id = 1;
+}
+
+message MsgDeviceMetaResponse {
+    required MsgDevice device = 1;
+    required string    token  = 2;
+}
+
+message MsgShareSyncRequest {
+    required MsgDevice device = 1;
+}
+
+message MsgShareSyncResponse {
+    required MsgDevice device = 1;
+}
+
+message MsgFindFileRequest {
+    required string sync_uuid           = 1;
+    optional string local_tree_uuid     = 2;
+    required string remote_tree_uuid    = 3;
+    required string path                = 4;
+    optional string device_uuid         = 5;
+}
+
+message MsgFindFileResponse {
+    required MsgStat  stat      = 1;
+} 
+
+message MsgPushBackupInfoRequest {
+    required MsgDevice device = 1;
+    optional string    root   = 2;
+}
+
+message MsgPushBackupInfoResponse {
+    required MsgDevice device = 1;
+}
+
+/* For Test */
+message MsgDeviceAddRequest {
+    required string        uuid       = 1;
+    required string        name       = 2;
+    required string        route_uri  = 3;
+    required string        data_uri   = 4;
+    required MsgDeviceType type       = 5;
+}
+
+message MsgRemoteDeviceShowResult {
+    required int32         id         = 1;
+    required string        uuid       = 2;
+    required string        name       = 3;
+    required string        data_uri   = 4;
+    required string        route_uri  = 5;
+    required MsgDeviceType type       = 6;
+    required bool          is_mine    = 7;
+    required bool          is_online  = 8;
+}
+
+message MsgRemoteDeviceShowResponse {
+    repeated MsgRemoteDeviceShowResult devices  = 1;
+}
+
+message MsgRemoteTreeAddRequest {
+    required string tree_uuid   = 1;
+    required string device_uuid = 2;
+    required string sync_uuid   = 3;
+}
+
+message MsgRemoteTreeAddResponse {
+    required MsgTreeInfo  tree   = 1;
+}
+
+message MsgTreeShowResponse {
+    repeated MsgTreeInfo    trees = 1;
+}
+
+message MsgSyncShowResponse {
+    repeated MsgSyncInfo    syncs = 1;
+}
+
+message MsgAddFavoriteRequest {
+    required int32   tree_id = 1;
+    required string  path = 2;
+}
+
+message MsgTestFindRequest {
+    required string sync_uuid = 1;
+    required string tree_uuid = 2;
+    required int64  since = 3 [default = 0];
+    required int32  limit = 4;
+}
+
+message MsgTestFindResponse {
+    repeated string uuids    = 1;
+    repeated MsgStat stats   = 2;
+}
+
+message MsgListSyncRequest {
+    required int32   sync_id = 1;
+    required string  path    = 2;
+}
+
+message MsgFileMeta {
+    required string      name               = 1;
+    required MsgFileType type               = 2;
+    required int64       length             = 3;
+    required int64       mtime              = 4;
+    required bool        has_download_cache = 5;
+    required string      cache_path         = 6;
+}
+
+message MsgListSyncResponse {
+    repeated MsgFileMeta files = 1;
+}
+
+message MsgSetAccountRequest {
+    required string username    = 1;
+    required string password    = 2;
+}
+
+message MsgReportDataRequest {
+	required string rt_type		= 1;
+	required string version		= 2;
+}
+
+message MsgStartupDiscoverDeviceRequest {
+    required int32 sync_id   = 1;
+}
+
+message MsgStartupDiscoverDeviceResponse {
+    required int32 id   = 1;
+}
+
+message MsgShutdownDiscoverDeviceRequest {
+    required int32 id   = 1;
+}
+
+message MsgGetDiscoveredDeviceRequest {
+    required int32 id   = 1;
+}
+message MsgDiscoverDeviceInfo {
+    required int32 id   = 1;
+    required string name = 2;
+}
+
+message MsgGetDiscoveredDeviceResponse {
+    required bool                  is_done  = 1;
+    repeated MsgDiscoverDeviceInfo devices  = 2;
+}
+
+message MsgTestShareSyncRequest {
+    required int32       discover_id  = 1;
+    required int32       device_id    = 2;
+    required MsgSyncPerm sync_perm    = 3;
+}
+
+message MsgStartupDownloadRequest {
+    required int32  sync_id         = 1;
+    required string relative_path   = 2;
+    required string target_path     = 3;
+}
+
+message MsgStartupDownloadResponse {
+    required int32  task_id         = 1;
+    required string target_path     = 2;
+}
+
+message MsgShutdownDownloadRequest {
+    required int32  task_id         = 1;
+}
+
+message MsgQueryDownloadStatusRequest {
+    required int32  task_id         = 1;
+}
+
+enum MsgUpDownloadStatus {
+    UDS_PREPARE = 1;
+    UDS_PRECESS = 2;
+    UDS_DONE    = 3;
+    UDS_FAIL    = 4;
+}
+
+message MsgQueryDownloadStatusResponse {
+    required MsgUpDownloadStatus status = 1;
+}
+
+message MsgStartupUploadRequest {
+    required int32  sync_id         = 1;
+    required string relative_path   = 2;
+    required string real_path       = 3;
+}
+
+message MsgStartupUploadResponse {
+    required int32  task_id         = 1;
+}
+
+message MsgShutdownUploadRequest {
+    required int32  task_id         = 1;
+}
+
+message MsgQueryUploadStatusRequest {
+    required int32  task_id         = 1;
+}
+
+message MsgQueryUploadStatusResponse {
+    required MsgUpDownloadStatus status = 1;
+}
+
+message MsgBackupAddRequest {
+    required string name   = 1;
+    required string root   = 2;
+}
+
+message MsgBackupAddResponse {
+    required int32  id      = 1;
+    required string uuid    = 2;
+}
+
+message MsgBackupDelRequest {
+    required int32  id = 1;
+}
+
+message MsgBackupInfo {
+    required int32  id         = 1;
+    required string uuid       = 2;
+    required string name       = 3;
+    required int64  last_sync  = 4;
+    repeated MsgTreeInfo trees = 6; 
+}
+
+message MsgBackupShowResponse {
+    repeated MsgBackupInfo backups = 1;
+}
+
+message MsgAddBackupTargetDeviceRequest {
+    required int32 backup_id   = 1;
+    required int32 device_id   = 2;
+    optional string backup_root = 3;
+}
+
+message MsgDelBackupTargetDeviceRequest {
+    required int32 backup_id = 1;
+    required int32 device_id = 2;
+}
+
+message MsgSetBackupRootRequest {
+    required string root = 1; 
+}
+
+message MsgSetTestPlatformRequest {
+    required MsgDeviceType device_type = 1;
+}
+
+message MsgQueryTreePairStatusRequest {
+    required int32 local_tree_id  = 1;
+    required int32 remote_tree_id = 2;
+}
+
+message MsgQueryTreePairStatusResponse {
+    required int32 num_file_to_download = 1;
+    required int32 num_file_to_upload   = 2;
+    required int32 num_file_consistent  = 3;
+    required int32 num_byte_to_download = 4;
+    required int32 num_byte_to_upload   = 5;
+    required int32 num_byte_consistent  = 6;
+}
+
+message MsgSetTreeRootRequest {
+    required int32  tree_id   = 1;
+    required string tree_root = 2;
+}
+
+message MsgDelBackupTargetRequest {
+    required int32 dst_tree_id = 1;
+}
+
+message MsgSetSyncModeRequest {
+    required int32       local_tree_id  = 1;
+    required int32       remote_tree_id = 2;
+    required MsgSyncMode sync_mode      = 3;
+    required int32       sync_time      = 4;
+}
+
+message MsgGetSyncModeRequest {
+    required int32       local_tree_id  = 1;
+    required int32       remote_tree_id = 2;
+}
+
+message MsgGetSyncModeResponse {
+    required MsgSyncMode sync_mode = 1;
+    required int32       sync_time = 2;
+}
+
+message MsgSetShareSyncPermRequest {
+    required int32       device_id = 1;
+    required int32       sync_id   = 2;
+    required MsgSyncPerm sync_perm = 3;
+}
+
+message MsgGetShareSyncPermRequest {
+    required int32       device_id = 1;
+    required int32       sync_id   = 2;
+}
+
+message MsgGetShareSyncPermResponse {
+    required MsgSyncPerm sync_perm = 3;
+}
+
+message MsgSetDownloadCacheVolumeRequest {
+    required int64  volume = 1;
+}
+
+message MsgGetDownloadCacheAmountResponse {
+    required int64  amount = 1;
+}
+
+message MsgGetDownloadCacheRootResponse {
+    required string  root = 1;
+}
+
+message MsgQueryHistoryInfoRequest {
+	required int32 limit = 1;
+}
+
+message MsgHistoryInfo {
+	required string dev_name = 1;
+	required string frompath = 2;
+	required string topath = 3;
+	required int64 time_stamp = 4;
+	required int32 code = 5;
+	required int32 error = 6;
+}
+
+message MsgQueryHistoryInfoResponse {
+	repeated MsgHistoryInfo historys = 1;
+}
+
+message MsgPermissionVerifyRequest {
+	required string perm_key = 1;
+}
+
+message MsgPermissionVerifyResponse {
+	required  int32 status = 1;
+}
+
+message MsgQueryPermissionsRequest {
+	repeated int32 perms = 1;
+}
+
+message MsgPermission {
+	required int32 perm = 1;
+	optional int64 constraint = 2;
+}
+
+message MsgQueryPermissionsResponse {
+	repeated MsgPermission perms = 1;
+}
+
+message MsgSetMacAddressInDbRequest {
+	required string mac_token = 1;
+}
+
+message MsgSetMacAddressInDbResponse {
+	required int32 status = 1;
+}
+
+enum TimeCode {
+	EXPIRED_TIME = 1;
+	CREATED_TIME = 2;
+	LAST_CONTACT_TIME = 3;
+	EXPIRED_OFFLINE_TIME = 4;
+}
+
+message MsgSetExpiredTimeInDbRequest {
+	required TimeCode code = 1;
+	required int64 expired_time = 2;
+}
+
+message MsgSetExpiredTimeInDbResponse {
+	required int32 status = 1;
+}
+
+message MsgClearPermissionsRequest {
+	required string key = 1;
+}
+
+message MsgClearPermissionsResponse {
+	required int32 status = 1;
+}
+
+enum VerifyStatusCode {
+  VSC_OK = 1;
+  VSC_VERIFYING = 2;
+  VSC_INVALID_KEY_CODE = 3;
+  VSC_LIMITED_KEY_BIND = 4;
+  VSC_EXPIRED_TIME = 5;
+  VSC_NONE = 6;
+  VSC_INVALID_ERROR_CODE = 7;
+  VSC_ERROR_PERMS = 8;
+  VSC_PERMISSION_DENY = 9;
+  VSC_ERROR_DATABASE = 10;
+  VSC_BINDING = 11;
+  VSC_UNBINDING = 12;
+  VSC_ALREADY_BIND = 13;
+  VSC_ALREADY_BIND_ANOTHERKEY = 14;
+  VSC_DEVICE_NOT_EXISTS = 15;
+  VSC_DEVICE_NOT_BIND = 16;
+  VSC_WAITING = 17;
+  VSC_UNKNOW_ERROR = 18;
+  VSC_NETWORK_ERROR = 19;
+}
+
+message MsgQueryVerifyStatusRequest {
+
+}
+
+message MsgQueryVerifyStatusResponse {
+	required VerifyStatusCode status = 1;
+}
+
+enum LicencesStatus {
+    LSP_OK = 1;
+    LSP_EXPIRED_OFFLINE_TIME = 2;
+    LSP_EXPIRED_TIME = 3;
+    LSP_INVALID = 4;
+}
+message MsgQueryVerifyIdentifyInfoRequest {
+
+}
+
+message MsgQueryVerifyIdentifyInfoResponse {
+	required LicencesStatus status = 1;
+	required int64 left_time = 2;
+	required int64 last_contact_time = 3;
+    required int64 expired_time = 4;
+    required int64 created_time = 5;
+    required int64 expired_offline_time = 6;
+}
+enum SyncControler {
+	ENABLE_SYNC = 1;
+	DISABLE_SYNC = 2;
+}
+
+message MsgSyncControlerRequest {
+	required SyncControler sync_behaviour = 1;
+	required int32 tree_id = 2;
+}
+
+message MsgSyncControlerResponse {
+	required int32 status = 1;
+}
+
+message MsgVerifyBindRequest {
+    required string key = 1;
+}
+
+message MsgVerifyBindResponse {
+    required int32 status = 1;
+}
+message MsgVerifyUnbindRequest {
+
+}
+
+message MsgVerifyUnbindResponse {
+    required int32 status = 1;
+}
+
+message MsgSetSyncPermRequest {
+  required int32 sync_id = 1;
+  required MsgSyncPerm perm = 2;
+}
+
+message MsgSetSyncPermResponse {
+  required MsgSyncPerm origin_perm = 1;
+}
+
+message MsgIpPort {
+  required string ip = 1;
+  required int32 port = 2;
+}
+
+message MsgAddStaticPeersRequest {
+  repeated MsgIpPort ip_port = 1;
+}
+
+message MsgAddStaticPeersResponse {
+}
+
+message MsgGetActiveIpRequest {
+}
+
+message MsgGetActiveIpResponse {
+  repeated MsgIpPort ips  = 1;
+}
+
+message MsgDeleteWatchRequest {
+  required string path = 1;
+}
+
+message MsgDeleteWatchResponse {
+}
+
+message MsgHandleRootRemoveRequest {
+  required int32 tree_id = 1;
+}
+
+message MsgHandleRootRemoveResponse {
+}
+
+message MsgRefreshEnableRequest {
+}
+
+message MsgRefreshEnableResponse {
+}
+
+message MsgRefreshDisableRequest {
+}
+
+message MsgRefreshDisableResponse {
+}
+

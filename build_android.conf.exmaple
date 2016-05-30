@@ -1,0 +1,10 @@
+ROOT=/home/super/Work/Android
+
+NDK=$ROOT/android-ndk-r10
+SYSROOT=$NDK/platforms/android-14/arch-arm/
+TOOLCHAIN=$ROOT/android-toolchain/arm-linux-androideabi/bin
+
+PREFIXARM="$(pwd)/build/armeabi"
+PREFIXARMV7="$(pwd)/build/armeabi-v7a"
+
+INSTALL_CMD="cd ${prefix}/..; ndk-build"

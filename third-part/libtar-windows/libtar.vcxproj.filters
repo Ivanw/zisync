@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="compat">
+      <UniqueIdentifier>{691997bf-095a-4d53-b5a8-18d398911fd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{29952fbe-ae14-488d-8a6d-8ec7af961b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{1016ed22-77d2-49a8-a476-1461b81cf50a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32\sys">
+      <UniqueIdentifier>{87791fd9-d366-4c17-8c25-cd8001a4e3c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32\win32">
+      <UniqueIdentifier>{467a0eb2-9901-4770-8a31-b2c0a470b598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="listhash">
+      <UniqueIdentifier>{abf6d945-0c98-4381-9118-6cc3418ce121}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="compat\basename.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="compat\dirname.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="compat\fnmatch.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="compat\glob.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="compat\strlcpy.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="compat\strmode.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="compat\strsep.c">
+      <Filter>compat</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\append.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\block.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\decode.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\encode.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\extract.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\handle.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\output.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\util.c">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="win32\dirent.c">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="listhash\libtar_hash.c">
+      <Filter>listhash</Filter>
+    </ClCompile>
+    <ClCompile Include="listhash\libtar_list.c">
+      <Filter>listhash</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\wrapper.c">
+      <Filter>listhash</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="compat\compat.h">
+      <Filter>compat</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\internal.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\libtar.h">
+      <Filter>lib</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\config.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\dirent.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\grp.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\pwd.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\tar.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\utime.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\sys\param.h">
+      <Filter>win32\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="win32\win32\types.h">
+      <Filter>win32\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="listhash\libtar_listhash.h">
+      <Filter>listhash</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{09117B48-580E-464F-BF7E-F3EEFF341305}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libzisync</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)..\include;$(ProjectDir)..\src;$(ProjectDir)include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)..\include;$(ProjectDir)..\src;$(ProjectDir)include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(ProjectDir)lib\Win32;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(ProjectDir)lib\Win32;$(LibraryPath)</LibraryPath>
+    <CustomBuildBeforeTargets>GenerateAdditionalSources</CustomBuildBeforeTargets>
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>$(ProjectDir)..\include;$(ProjectDir)..\src;$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib\Win32;$(LibraryPath)</LibraryPath>
+    <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>$(ProjectDir)..\include;$(ProjectDir)..\src;$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib\Win32;$(LibraryPath)</LibraryPath>
+    <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <CustomBuildStep>
+      <Command>protoc --proto_path=$(SolutionDir) --cpp_out=$(SolutionDir) %(FullPath)</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(SolutionDir)%(Filename).pb.h;$(SolutionDir)%(Filename).pb.cc;%(Outputs)</Outputs>
+      <Message>Compile proto files if needs</Message>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\src\zisync\kernel\proto\kernel.proto" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\zisync\kernel\database\content.cc" />
+    <ClCompile Include="..\src\zisync\kernel\database\content_provider.cc" />
+    <ClCompile Include="..\src\zisync\kernel\database\content_resolver.cc" />
+    <ClCompile Include="..\src\zisync\kernel\database\icontent.cc" />
+    <ClCompile Include="..\src\zisync\kernel\database\icore.cc" />
+    <ClCompile Include="..\src\zisync\kernel\database\table.cc" />
+    <ClCompile Include="..\src\zisync\kernel\database\xsqlite.cc" />
+    <ClCompile Include="..\src\zisync\kernel\format.cc" />
+    <ClCompile Include="..\src\zisync\kernel\history\history_data_source.cc" />
+    <ClCompile Include="..\src\zisync\kernel\history\history_manager.cc" />
+    <ClCompile Include="..\src\zisync\kernel\kernel.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\dht.c" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\dht_func.c" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\discover_data_source.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\discover_server.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\hostcheck.c" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\http_request.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\http_response.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\libevent++.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\libevent_base.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\libtar++.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\openssl_hostname_validation.c" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\report_data_server.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\tar_download_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\tar_get_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\tar_put_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\tar_reader.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\tar_upload_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\tar_writer.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\transfer_connection.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\transfer_server2.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\transfer_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\libevent\ui_event_server.cc" />
+    <ClCompile Include="..\src\zisync\kernel\monitor\delayed_directory_change_handler.cc" />
+    <ClCompile Include="..\src\zisync\kernel\monitor\directory_changes_windows.cc" />
+    <ClCompile Include="..\src\zisync\kernel\monitor\fs_monitor.cc" />
+    <ClCompile Include="..\src\zisync\kernel\monitor\monitor.cc" />
+    <ClCompile Include="..\src\zisync\kernel\permission.cc" />
+    <ClCompile Include="..\src\zisync\kernel\platform\platform.cc" />
+    <ClCompile Include="..\src\zisync\kernel\proto\kernel.pb.cc">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TurnOffAllWarnings</WarningLevel>
+    </ClCompile>
+    <ClCompile Include="..\src\zisync\kernel\proto\verify.pb.cc" />
+    <ClCompile Include="..\src\zisync\kernel\router.cc" />
+    <ClCompile Include="..\src\zisync\kernel\sync_tree_agent.cc" />
+    <ClCompile Include="..\src\zisync\kernel\transfer\task_monitor.cc" />
+    <ClCompile Include="..\src\zisync\kernel\transfer\transfer.pb.cc">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TurnOffAllWarnings</WarningLevel>
+    </ClCompile>
+    <ClCompile Include="..\src\zisync\kernel\tree_status.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\abort.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\base64.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\cipher.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\configure.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\context.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\device.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\discover_device.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\download.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\error.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\event_notifier.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\file_stat.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\ignore.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\inner_request.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\issue_request.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\message.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\normalize_path.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\normalize_path_linux.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\zisync\kernel\utils\normalize_path_window.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\zisync\kernel\utils\pkcs12_cert.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\plain_config.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\query_cache.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\read_fs_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\rename.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\reportdata_handler.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sha.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sync.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sync_get_handler.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sync_list.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sync_put_handler.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sync_updater.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\sync_upload_handler.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\tree.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\tree_mutex.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\tree_traverse.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\trie.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\updownload.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\upload.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\url.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\usn.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\utils.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\vector_clock.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\x509_cert.cc" />
+    <ClCompile Include="..\src\zisync\kernel\utils\zmq.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\inner_worker.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\outer_worker.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\refresh_worker.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\sync_file.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\sync_file_task.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\sync_worker.cc" />
+    <ClCompile Include="..\src\zisync\kernel\worker\worker.cc" />
+    <ClCompile Include="..\src\zisync\kernel\zslog.cc" />
+    <ClCompile Include="src\default_logger.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\zisync\kernel\database\content.h" />
+    <ClInclude Include="..\src\zisync\kernel\database\content_provider.h" />
+    <ClInclude Include="..\src\zisync\kernel\database\content_resolver.h" />
+    <ClInclude Include="..\src\zisync\kernel\database\icontent.h" />
+    <ClInclude Include="..\src\zisync\kernel\database\icore.h" />
+    <ClInclude Include="..\src\zisync\kernel\database\xsqlite.h" />
+    <ClInclude Include="..\src\zisync\kernel\endpoint.h" />
+    <ClInclude Include="..\src\zisync\kernel\format.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\dht.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\discover.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\discover_data_source.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\discover_server.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\hostcheck.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\http.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\http_request.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\http_response.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\libevent++.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\libevent_base.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\libtar++.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\openssl_hostname_validation.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\report_data_server.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar_download_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar_get_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar_put_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar_reader.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar_upload_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\tar_writer.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\transfer.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\transfer_connection.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\transfer_server2.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\transfer_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\libevent\ui_event_server.h" />
+    <ClInclude Include="..\src\zisync\kernel\monitor\delayed_directory_change_handler.h" />
+    <ClInclude Include="..\src\zisync\kernel\monitor\directory_changes_windows.h" />
+    <ClInclude Include="..\src\zisync\kernel\monitor\fs_monitor.h" />
+    <ClInclude Include="..\src\zisync\kernel\monitor\monitor.h" />
+    <ClInclude Include="..\src\zisync\kernel\permission.h" />
+    <ClInclude Include="..\src\zisync\kernel\platform\platform.h" />
+    <ClInclude Include="..\src\zisync\kernel\proto\kernel.pb.h" />
+    <ClInclude Include="..\src\zisync\kernel\proto\verify.pb.h" />
+    <ClInclude Include="..\src\zisync\kernel\router.h" />
+    <ClInclude Include="..\src\zisync\kernel\sync_const.h" />
+    <ClInclude Include="..\src\zisync\kernel\sync_tree_agent.h" />
+    <ClInclude Include="..\src\zisync\kernel\transfer\tar_tree_stat.h" />
+    <ClInclude Include="..\src\zisync\kernel\transfer\task_monitor.h" />
+    <ClInclude Include="..\src\zisync\kernel\transfer\transfer.pb.h" />
+    <ClInclude Include="..\src\zisync\kernel\tree_status.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\abort.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\base64.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\cipher.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\configure.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\context.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\device.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\download.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\error.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\event_notifier.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\file_stat.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\ignore.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\inner_request.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\issue_request.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\message.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\normalize_path.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\pkcs12_cert.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\plain_config.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\query_cache.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\read_fs_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\rename.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\reportdata_handler.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\request.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\response.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sha.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sync.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sync_get_handler.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sync_list.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sync_put_handler.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sync_updater.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\sync_upload_handler.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\token.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\tree.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\tree_mutex.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\tree_traverse.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\trie.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\updownload.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\upload.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\url.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\usn.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\vector_clock.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\x509_cert.h" />
+    <ClInclude Include="..\src\zisync\kernel\utils\zmq.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\inner_worker.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\outer_worker.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\push_sync.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\refresh_worker.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\report_monitor.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\sync_file.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\sync_file_task.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\sync_worker.h" />
+    <ClInclude Include="..\src\zisync\kernel\worker\worker.h" />
+    <ClInclude Include="..\src\zisync\kernel\zslog.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

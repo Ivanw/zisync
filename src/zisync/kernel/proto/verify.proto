@@ -1,0 +1,52 @@
+package Http;
+
+enum ErrorCode {
+	Ok = 0;
+	TimeExpired = 1;
+    NotBinded = 2;
+	InvaildKeyCode = 3;
+    InvalidDevice = 4;
+	LimitedKeyBind = 5;
+	Other = 6;
+}
+
+enum PrivilegeCode {
+    CreateFolder = 1;  // has constraint
+    ShareSwitch = 2;   // has constraint
+    ShareReadWrite = 3;
+    ShareRead = 4;
+    ShareWrite = 5;
+    DeviceSwitch = 6;
+    DeviceEdit = 7;    // has constraint
+    OnlineSwitch = 8;  // has constraint
+    OnlineOpen = 9;
+    OnlineDownload = 10;
+    OnlineUpload = 11;
+    TransferSwitch = 12;
+    HistorySwitch = 13;
+    ChangeSharePermission = 14;
+    RemoveShareDevice = 15;
+    CreateBackup = 16; // has constraint
+}
+
+message Permission {
+	required PrivilegeCode privilege = 1;
+	required string constraint = 2;	
+}
+
+message VerifyRequest {
+	required string macToken = 1;
+	required string keyCode = 2;
+	required string stat = 3;
+}
+
+message VerifyResponse {
+	required ErrorCode errorCode = 1;
+	optional string role = 2;
+	repeated Permission permissions = 3;
+	optional int64 createdTime = 4;
+	optional int64 lastContactTime = 5;
+	optional int64 expiredOfflineTime = 6;
+	optional int64 expiredTime = 7;
+	optional string keyCode = 8;
+}

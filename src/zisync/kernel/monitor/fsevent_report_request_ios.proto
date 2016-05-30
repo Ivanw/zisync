@@ -1,0 +1,20 @@
+package zs;
+
+enum MsgReportEventTypeIOS {
+    ET_CREATE_IOS = 1;
+    ET_MODIFY_IOS = 2;
+    ET_DELETE_IOS = 3;
+    ET_ATTRIB_IOS = 4;
+    ET_MOVE_FROM_IOS = 5;
+    ET_MOVE_TO_IOS = 6;
+}
+
+message MsgReportEventIOS {
+    required string path = 1;
+    required MsgReportEventTypeIOS type = 2;
+}
+
+message MsgMonitorReportEventRequestIOS {
+    required string tree_root = 1;
+    repeated MsgReportEventIOS events = 2;
+}

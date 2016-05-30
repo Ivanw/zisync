@@ -1,0 +1,5 @@
+package zs;
+
+message TarGetFileList {
+  repeated string relative_paths = 1;
+}
