@@ -3,6 +3,7 @@ AC_INIT([ZiSyncKernel], [1.3.0], [never.wencan@gmail.com])
 # AC_CANONICAL_BUILD
 AC_CANONICAL_SYSTEM
 
+AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE([foreign -Wall   subdir-objects])
 AC_CONFIG_MACRO_DIR([m4])
 

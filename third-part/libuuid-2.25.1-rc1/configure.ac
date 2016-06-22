@@ -1,4 +1,5 @@
 AC_INIT([libuuid], [2.25.1], [liulikun@gmail.com])
+AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror subdir-objects])
 
 AC_CONFIG_MACRO_DIR([m4])
