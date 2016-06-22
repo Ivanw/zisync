@@ -10,9 +10,10 @@ dir=`dirname $0`
 set -e
 
 SCRIPT_PATH=$dir # `readlink -m $dir`
+WORK_PATH=`readlink -m $SCRIPT_PATH/..`
 
 cd $SCRIPT_PATH
-source sh-libs.sh
+#source sh-libs.sh
 
 usage_print() {
     echo "Options:"

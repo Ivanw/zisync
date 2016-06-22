@@ -1,12 +1,13 @@
 #!/bin/bash
 
-BUILD_PATH="`pwd`/../"
+#BUILD_PATH="`pwd`/../"
+BUILD_PATH=`readlink -m ../`
 export CPPFLAGS="-I$BUILD_PATH/include"
 export CFLAGS="-DSQLITE_HAS_CODEC"
 export LDFLAGS="-L$BUILD_PATH/lib"
 export LIBS="-lcrypto -ldl"
 
-PREFIX=$BUILD_PATH 
+PREFIX=$BUILD_PATH/build
 if [ $# -gt 0 ] ; then 
   echo "using prefix $1"
   PREFIX=$1
@@ -19,4 +20,4 @@ if [ -f $BUILD_PATH/include/sqlite3.h  ] ; then
   rm $BUILD_PATH/include/sqlite3.h
 fi
 
-autoreconf -fi && ./configure --enable-tempstore=yes  --enable-shared=no  --prefix=$PREFIX --disable-tcl && make
+autoreconf -fi && ./configure --enable-tempstore=yes  --enable-shared=no  --prefix=$PREFIX --disable-tcl && make && make install
