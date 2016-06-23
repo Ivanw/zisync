@@ -81,10 +81,10 @@ objfre_*/
 *.msi
 # End ignore for windows platform
 
-#src/zisync/kernel/proto/kernel.pb.cc
-#src/zisync/kernel/proto/kernel.pb.h
-#src/zisync/kernel/proto/verify.pb.cc
-#src/zisync/kernel/proto/verify.pb.h
+src/zisync/kernel/proto/kernel.pb.cc
+src/zisync/kernel/proto/kernel.pb.h
+src/zisync/kernel/proto/verify.pb.cc
+src/zisync/kernel/proto/verify.pb.h
 #src/zisync/kernel/sync_list.cc
 #src/zisync/kernel/sync_list.h
 #src/zisync/kernel/test.cc
