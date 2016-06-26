@@ -1,0 +1,8 @@
+zisync/kernel/Database/
+zisync/kernel/ZiSync.Plain.db
+zisync/kernel/libevent/empty_file
+zisync/kernel/libevent/files/
+zisync/kernel/libevent/tmp_dir/
+zisync/kernel/test_database
+
+

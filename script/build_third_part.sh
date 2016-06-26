@@ -184,6 +184,7 @@ fi
 #    cd $LIBEVENT_PATH
 #    ./configure --prefix=$BUILD_PATH --enable-shared=no && make && make install
 #fi
+    echo "---------Compile libevent before---------"
 if [ ! -f "$BUILD_PATH/lib/libevent.la" -o -n "$libevent" -o -n "$is_init" -o ! -f "$BUILD_PATH/lib/libevent_pthreads.a" -o ! -f "$BUILD_PATH/lib/libevent_openssl.a" ]; then
     echo "---------Compile libevent---------"
     cd $LIBEVENT2_PATH
@@ -195,6 +196,7 @@ if [ ! -f "$BUILD_PATH/lib/libevent.la" -o -n "$libevent" -o -n "$is_init" -o ! 
     else
       export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$BUILD_PATH/lib/pkgconfig"
     fi
+    set OPENDIR
     autoreconf --install && ./configure --enable-shared=no --prefix=$BUILD_PATH && make && make install
 fi
 

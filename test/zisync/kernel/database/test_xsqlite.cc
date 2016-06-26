@@ -134,8 +134,7 @@ TEST(test_XSQLite) {
   // printf("rowid: %" PRId64 "\n", rowid);
   CHECK(rowid > 0);
 
-  ContentValues cv2(8);
-
+ 
   cv2.Put("uuid", "uuid2");
   cv2.Put("name", "name2");
   cv2.Put("type", 0);

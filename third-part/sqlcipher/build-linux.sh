@@ -20,4 +20,5 @@ if [ -f $BUILD_PATH/include/sqlite3.h  ] ; then
   rm $BUILD_PATH/include/sqlite3.h
 fi
 
-autoreconf -fi && ./configure --enable-tempstore=yes  --enable-shared=no  --prefix=$PREFIX --disable-tcl && make && make install
+./configure --enable-tempstore=yes CFLAGS="-DSQLITE_HAS_CODEC" --enable-shared=no --prefix=$PREFIX --disable-tcl && make && make install
+#autoreconf -fi && ./configure --enable-tempstore=yes  --enable-shared=no  --prefix=$PREFIX --disable-tcl && make && make install
