@@ -118,8 +118,6 @@ test/zisync/kernel/core
 test/zisync/kernel/test_data_store
 test/zisync/kernel/test_idiscover
 test/zisync/kernel/test_white_synclist
-test/zisync/kernel/daemon
-test/zisync/kernel/discover/
 src/zisync/kernel/monitor/fsevent_report_request_ios.pb.cc
 src/zisync/kernel/monitor/fsevent_report_request_ios.pb.h
 test/zisync/kernel/test_report_ui_monitor
@@ -160,9 +158,7 @@ test/zisync/kernel/test_idiscover
 test/zisync/kernel/transfer/server.csr
 test/zisync/kernel/test_white_synclist                                               
 test/zisync/kernel/transfer/server.key
-test/zisync/kernel/daemon                                                            
 test/zisync/kernel/transfer/ssl-plusync/
-test/zisync/kernel/discover/                                                         
 src/zisync/kernel/monitor/fsevent_report_request_ios.pb.cc                           
 src/zisync/kernel/monitor/fsevent_report_request_ios.pb.h                            
 test/zisync/kernel/test_report_ui_monitor                                            
