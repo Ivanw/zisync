@@ -1,0 +1,6 @@
+evconfig-private.h
+include/event2/event-config.h
+libevent.pc
+libevent_openssl.pc
+libevent_pthreads.pc
+stamp-h2

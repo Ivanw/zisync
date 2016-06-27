@@ -10,9 +10,10 @@ dir=`dirname $0`
 set -e
 
 SCRIPT_PATH=$dir # `readlink -m $dir`
+WORK_PATH=`readlink -m $SCRIPT_PATH/..`
 
 cd $SCRIPT_PATH
-source sh-libs.sh
+#source sh-libs.sh
 
 usage_print() {
     echo "Options:"
@@ -112,18 +113,21 @@ BUILD_PATH=$THIRD_PART_PATH/build
 
 # Build protobuf
 if [ ! -f "$BUILD_PATH/lib/libprotobuf.la" -o -n "$protobuf" -o -n "$is_init" ]; then
+    echo "---------Compile libprotobuf---------"
     cd $PROTOBUF_PATH
     autoreconf --install --force && ./configure --prefix=$BUILD_PATH --enable-shared=no && make && make install
 fi
 
 # Build zeromq
 if [ ! -f "$BUILD_PATH/lib/libzmq.la" -o -n "$zeromq" -o -n "$is_init" ]; then
+    echo "---------Compile libzmq---------"
     cd $ZEROMQ_PATH
     autoreconf -fi && ./configure --prefix=$BUILD_PATH --enable-shared=no && make && make install
 fi
 
 # Build UnitTest++
 if [ ! -f "$BUILD_PATH/lib/libUnitTest++.la" -o -n "$unittest" -o -n "$is_init" ]; then
+    echo "---------Compile Unittest---------"
     cd $UNITTEST_PATH
     autoreconf --install --force && ./configure --prefix=$BUILD_PATH && make && make install
     # if [ ! -e "$BUILD_PATH/include/UnitTest++/" ]; then
@@ -146,18 +150,21 @@ if [ ! -f "$BUILD_PATH/lib/libUnitTest++.la" -o -n "$unittest" -o -n "$is_init" 
 fi
 
 if [ ! -f "$BUILD_PATH/lib/libcrypto.a" -o -n "$ssl" -o -n "$is_init" ]; then
+    echo "---------Compile openssl---------"
     cd $SSL_PATH
     ./config --prefix=$BUILD_PATH && make && make install
 fi
 
 # Build sqlite3
 if [ ! -f "$BUILD_PATH/lib/libsqlcipher.la" -o -n "$sqlite" -o -n "$is_init" ]; then
+    echo "---------Compile sqlcipher---------"
     cd $SQLITE3_PATH
     ./build-linux.sh
 fi
 
 #Build libtar
 if [ ! -f "$BUILD_PATH/lib/libtar.la" -o -n "$libtar" -o -n "$is_init" ]; then
+    echo "---------Compile libtar---------"
     cd $LIBTAR_PATH
     autoreconf --install
     ./configure --prefix=$BUILD_PATH --enable-shared=no && make && make install
@@ -165,6 +172,7 @@ if [ ! -f "$BUILD_PATH/lib/libtar.la" -o -n "$libtar" -o -n "$is_init" ]; then
 fi
 
 if [ ! -f "$BUILD_PATH/lib/libuuid.la" -o -n "$libuuid" -o -n "$is_init" ]; then
+    echo "---------Compile libuuid---------"
     cd $LIBUUID_PATH
     autoreconf --install --force && ./configure --prefix=$BUILD_PATH --enable-shared=no && make && make install
 fi
@@ -177,6 +185,7 @@ fi
 #    ./configure --prefix=$BUILD_PATH --enable-shared=no && make && make install
 #fi
 if [ ! -f "$BUILD_PATH/lib/libevent.la" -o -n "$libevent" -o -n "$is_init" -o ! -f "$BUILD_PATH/lib/libevent_pthreads.a" -o ! -f "$BUILD_PATH/lib/libevent_openssl.a" ]; then
+    echo "---------Compile libevent---------"
     cd $LIBEVENT2_PATH
     export LDFLAGS="-L$BUILD_PATH/lib/"
     export LIBS="-lcrypto -lssl"

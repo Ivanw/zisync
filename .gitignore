@@ -74,10 +74,10 @@ objfre_*/
 Log/
 # End ignore for windows platform
 
-#src/zisync/kernel/proto/kernel.pb.cc
-#src/zisync/kernel/proto/kernel.pb.h
-#src/zisync/kernel/proto/verify.pb.cc
-#src/zisync/kernel/proto/verify.pb.h
+src/zisync/kernel/proto/kernel.pb.cc
+src/zisync/kernel/proto/kernel.pb.h
+src/zisync/kernel/proto/verify.pb.cc
+src/zisync/kernel/proto/verify.pb.h
 #src/zisync/kernel/sync_list.cc
 #src/zisync/kernel/sync_list.h
 #src/zisync/kernel/test.cc
@@ -166,6 +166,10 @@ test/zisync/kernel/discover/
 src/zisync/kernel/monitor/fsevent_report_request_ios.pb.cc                           
 src/zisync/kernel/monitor/fsevent_report_request_ios.pb.h                            
 test/zisync/kernel/test_report_ui_monitor                                            
+third-part/sqlite-3.7.7/
+third-part/libevent-2.0.21-stable/                                                   
+third-part/zeromq-4.0.4/src/platform.hpp.in
+third-part/zeromq-4.0.4/src/platform.hpp.in~
 test/zisync/kernel/ca.crt
 test/zisync/kernel/ca.der
 test/zisync/kernel/test_cert
